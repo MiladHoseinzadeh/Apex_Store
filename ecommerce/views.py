@@ -1,5 +1,9 @@
 from django.shortcuts import render
-
+from ecommerce.models import Product
 
 def index(request):
-    return render(request, "ecommerce/index.html")
+    products = Product.objects.all()[:8]
+    context = {
+        'products': products
+    }
+    return render(request, "ecommerce/index.html", context)
