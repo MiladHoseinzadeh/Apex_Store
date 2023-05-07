@@ -7,3 +7,10 @@ def index(request):
         'products': products
     }
     return render(request, "ecommerce/index.html", context)
+
+def shop(request):
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, "ecommerce/shop.html", context)

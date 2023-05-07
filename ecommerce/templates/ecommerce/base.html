@@ -13,9 +13,9 @@
 	<nav class="border-b border-gray-300">
 		<div class="max-w-6xl mx-auto py-2 px-6 xl:px-0 flex items-center justify-between">
 			<div class="menu-left flex items-center space-x-6">
-				<a href="#" class="py-4 text-lg text-purple-500 font-semibold">Apex Store</a>
+				<a href="{% url 'ecommerce:index' %}" class="py-4 text-lg text-purple-500 font-semibold">Apex Store</a>
 				<ul class="flex items-center space-x-4">
-					<li><a href="#">Shop</a></li>
+					<li><a href="{% url 'ecommerce:shop' %}">Shop</a></li>
 					<li><a href="#">About</a></li>
 				</ul>
 			</div>
