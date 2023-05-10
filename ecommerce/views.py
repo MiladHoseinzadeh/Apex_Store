@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from ecommerce.models import Product
+from ecommerce.models import Product, Category
 
 def indexـpage(request):
     products = Product.objects.all()[:8]
@@ -9,9 +9,18 @@ def indexـpage(request):
     return render(request, "ecommerce/index.html", context)
 
 def shop(request):
+    categories = Category.objects.all()
     products = Product.objects.all()
+
+    active_category = request.GET.get('category', '')
+
+    if active_category:
+        products = Product.objects.filter(category__slug=active_category)
+        
     context = {
-        'products': products
+        'categories': categories,
+        'products': products,
+        'active_category': active_category,
     }
     return render(request, "ecommerce/shop.html", context)
 

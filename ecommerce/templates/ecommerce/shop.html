@@ -19,10 +19,22 @@
 		</form>
 		<h3 class="mt-6 mb-3 text-xl uppercase">Categories</h3>
 		<ul class="space-y-2">
-			<li><a href="#" class="text-purple-500">All Categories</a></li>
-			<li><a href="#" class="text-gray-500">Sofas</a></li>
-			<li><a href="#" class="text-gray-500">Beds</a></li>
-			<li><a href="#" class="text-gray-500">Shirts</a></li>
+			<li><a href="{% url 'ecommerce:shop' %}" class="
+				{% if not active_category %}
+					text-purple-500
+				{% else %}
+					text-gray-500
+				{% endif %}">All Categories</a></li>
+			
+			{% for category in categories %}
+			<li><a href="{% url 'ecommerce:shop' %}?category={{ category.slug }}" class="
+				{% if category.slug == active_category %}
+					text-purple-500
+				{% else %}
+					text-gray-500
+				{% endif %}">{{ category.title }}</a></li>
+			{% endfor %}
+
 		</ul>
 	</div>
 	<div class="products w-full lg:w-3/4 flex -mt-6 items-center flex-wrap">
