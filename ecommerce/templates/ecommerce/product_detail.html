@@ -4,13 +4,17 @@
 
 {% block main_content %}
 <div class="mas-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-5">
-	<div class="images w-full mb-6 lg:mb-2 lg:w-3/5">
+	<div class="images w-full mb-6 lg:mb-2 lg:w-3/5" >
 		<img src="1.jpg" class="rounded-xl">
 	</div>
 	<div class="information w-full lg:p-6 lg:w-2/5">
-		<h1 class="text-2xl">product name</h1>
-		<p class="mt-1 text-gray-400">$ 9.99</p>
-		<p class="mt-6 text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus suscipit, accusantium sint cumque minima a sequi totam velit. Veniam ipsum possimus nemo consequuntur maiores rem dolor quae doloribus eveniet qui.</p>
+		<h1 class="text-2xl">{{ product.name }}</h1>
+		<p class="mt-1 text-gray-400">$ {{ product.price }}</p>
+		
+		{% if product.description %}
+			<p class="mt-6 text-gray-700">{{ product.description }}</p>
+		{% endif %}
+			
 		<a href="#" class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-500 text-white hover:bg-purple-700">Add to cart</a>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from ecommerce.models import Product, Category
 
 def indexـpage(request):
@@ -28,5 +28,10 @@ def shop(request):
     }
     return render(request, "ecommerce/shop.html", context)
 
-def product_detail(request):
-    return render(request, "ecommerce/product_detail.html")
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+
+    context = {
+        'product':product,
+    }
+    return render(request, "ecommerce/product_detail.html", context)

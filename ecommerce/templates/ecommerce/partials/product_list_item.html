@@ -1,10 +1,10 @@
 <div class="w-full md:w-1/3 xl:w-1/4 p-6">
-	<a href="#">
+	<a href="{% url 'ecommerce:product_detail' product.slug %}">
 		<img class="rounded-lg hover:shadow-lg"
 			src="file:///mnt/01D41B118E9A5520/Work/Django/Apex_Ecommerce/images/levitating-product-display-with-beauty-cream.jpg">
 	</a>
 	<div class="pt-3 flex items-center justify-between">
-		<a href="#">{{ product.name }}</a>
+		<a href="{% url 'ecommerce:product_detail' product.slug %}">{{ product.name }}</a>
 		<a href="#" class="text-purple-500 hover:text-purple-800">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 				stroke="currentColor" class="w-6 h-6">
