@@ -1,0 +1,38 @@
+{% extends 'ecommerce/base.html' %}
+
+{% block page_title %}Sign Up{% endblock page_title %}
+
+{% block main_content %}
+<div class="max-w-lg mx-auto flex flex-wrap p-6">
+	<div class="w-full bg-gray-100 p-6 rounded-xl">
+		<h1 class="mb-6 text-2xl">Sign Up</h1>
+		<form action="." method="post" class="space-y-3">
+			{% csrf_token %}
+			<div>
+				<label>Username</label>
+				<input type="text" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
+			</div>
+			<div>
+				<label>Email</label>
+				<input type="email" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
+			</div>
+			<div>
+				<label>Password</label>
+				<input type="password" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
+			</div>
+			<div>
+				<label>Confirm Password</label>
+				<input type="password" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
+			</div>
+			
+			<div class="p-6 bg-red-200 text-red-800 rounded-xl">
+				<p>This is an error</p>
+			</div>
+				
+			<div>
+				<button class="py-4 px-6 text-white rounded-xl bg-purple-500 hover:bg-purple-700">Sign Up</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock main_content %}
