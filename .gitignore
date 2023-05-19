@@ -266,5 +266,6 @@ pyrightconfig.json
 # VSCODE
 .vscode
 tailwind.config.js
+run
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django

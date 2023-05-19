@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from ecommerce.models import Product, Category
+from ecommerce.cart import Cart
 
 def indexـpage(request):
     products = Product.objects.all()[:8]
@@ -35,3 +36,9 @@ def product_detail(request, slug):
         'product':product,
     }
     return render(request, "ecommerce/product_detail.html", context)
+
+def add_to_cart(request, product_id):
+    cart = Cart(request)
+    cart.add(product_id)
+
+    return render(request, "ecommerce/menu_cart.html")
