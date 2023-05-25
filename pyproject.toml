@@ -9,6 +9,7 @@ packages = [{include = "apex_ecommerce"}]
 [tool.poetry.dependencies]
 python = "^3.8"
 Django = "^4.2"
+pillow = "^9.5.0"
 
 
 [build-system]
