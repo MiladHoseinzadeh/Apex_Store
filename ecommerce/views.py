@@ -37,6 +37,9 @@ def product_detail(request, slug):
     }
     return render(request, "ecommerce/product_detail.html", context)
 
+def show_cart(request):
+    return render(request, "ecommerce/show_cart.html")
+
 def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add(product_id)
