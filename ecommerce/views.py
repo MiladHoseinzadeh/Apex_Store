@@ -49,7 +49,7 @@ def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add(product_id)
 
-    return render(request, "ecommerce/menu_cart.html")
+    return render(request, "ecommerce/partials/menu_cart.html")
 
 
 def checkout(request):
