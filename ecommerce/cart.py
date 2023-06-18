@@ -46,3 +46,6 @@ class Cart(object):
 		if product_id in self.cart:
 			del self.cart[product_id]
 			self.save()
+
+	def get_total_price(self):
+		return sum(item['total_price'] for item in self.cart.values())
