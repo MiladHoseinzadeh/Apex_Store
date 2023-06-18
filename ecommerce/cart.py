@@ -16,6 +16,11 @@ class Cart(object):
 		for product_id in self.cart.keys():
 			self.cart[str(product_id)]['product'] = Product.objects.get(pk=product_id)
 
+		for item in self.cart.values():
+			item['total_price'] = item['product'].price * item['quantity']
+
+			yield item
+
 	def __len__(self):
 		return sum(item['quantity'] for item in self.cart.values())
 
