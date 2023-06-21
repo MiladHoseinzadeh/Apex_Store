@@ -16,6 +16,7 @@
 				<label>Password</label>
 				<input type="password" name="password" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
 			</div>
+			<input type="hidden" name="next" value="{{ request.GET.next }}"/>
 
 			{% if form.errors %}
 

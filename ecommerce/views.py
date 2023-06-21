@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from ecommerce.models import Product, Category
@@ -51,6 +52,6 @@ def add_to_cart(request, product_id):
 
     return render(request, "ecommerce/partials/menu_cart.html")
 
-
+@login_required
 def checkout(request):
     return render(request, "ecommerce/checkout.html")
