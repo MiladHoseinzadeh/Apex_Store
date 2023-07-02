@@ -136,4 +136,5 @@ SESSION_COOKIE_AGE = 86400
 CART_SESSION_ID = 'cart'
 
 # Login and Logout
+LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
