@@ -1,0 +1,31 @@
+{% extends 'ecommerce/base.html' %}
+
+{% block page_title %}Edit Account{% endblock page_title %}
+
+{% block main_content %}
+<div class="max-w-6xl mx-auto p-6">
+	<h1 class="mb-5 text-2xl">Edit Account</h1>
+	<form action="." method="post">
+		<div>
+			<label>First Name</label>
+			<input type="text" name="first_name" class="w-full my-2 py-4 px-6 bg-gray-100 rounded-xl" value="{{ request.user.first_name }}">
+		</div>
+		<div>
+			<label>Last Name</label>
+			<input type="text" name="last_name" class="w-full my-2 py-4 px-6 bg-gray-100 rounded-xl" value="{{ request.user.last_name }}">
+		</div>
+		<div>
+			<label>Email</label>
+			<input type="email" name="email" class="w-full my-2 py-4 px-6 bg-gray-100 rounded-xl" value="{{ request.user.email }}">
+		</div>
+		<div>
+			<label>Username</label>
+			<input type="text" name="username" class="w-full my-2 py-4 px-6 bg-gray-100 rounded-xl" value="{{ request.user.username }}">
+		</div>
+		<div>
+			<button class="py-4 px-6 rounded-xl text-white bg-purple-500">Save</button>
+		</div>
+	</form>
+
+</div>
+{% endblock main_content %}

@@ -23,3 +23,7 @@ def signup(request):
 @login_required
 def my_account(request):
     return render(request, 'accounts/my_account.html')
+
+@login_required
+def edit_my_account(request):
+    return render(request, 'accounts/edit_my_account.html')
