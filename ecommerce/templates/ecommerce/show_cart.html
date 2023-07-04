@@ -8,23 +8,7 @@
 	<div class="products w-full md:w-3/4 lg:w-3/4 xl:w-3/4">
 		
 		{% for item in cart %}	
-			<div class="product mb-6 flex pr-6">
-				<a href="#" class="w-1/4">
-					<img src="{{ item.product.get_thumbnail }}" class="hover:shadow-lg rounded-xl">
-				</a>
-				<div class="w-3/4 pl-6">
-					<div class="flex justify-between">
-						<a href="#" class="text-lg">{{ item.product.name }}</a>
-						<span class="mb-6 pt-1 text-gray-500">$ {{ item.product.price }}</span>
-					</div>
-					<hr>
-					<div class="quantity mt-6 flex items-center space-x-4">
-						<a href="#" class="p-3 bg-gray-100">-</a>
-						<span>{{ item.quantity }}</span>
-						<a href="#" class="p-3 bg-gray-100">+</a>
-					</div>
-				</div>
-			</div>
+			{% include 'ecommerce/partials/cart_item.html' %}
 		{% endfor %}
 			
 	</div>
