@@ -55,3 +55,6 @@ def add_to_cart(request, product_id):
 @login_required
 def checkout(request):
     return render(request, "ecommerce/checkout.html")
+
+def hx_menu_cart(request):
+    return render(request, 'ecommerce/partials/menu_cart.html')
