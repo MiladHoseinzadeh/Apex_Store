@@ -268,4 +268,5 @@ pyrightconfig.json
 tailwind.config.js
 run
 
+images/
 # End of https://www.toptal.com/developers/gitignore/api/python,django
