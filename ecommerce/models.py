@@ -1,4 +1,5 @@
 from io import BytesIO
+from django.contrib.auth.models import User
 from django.core.files import File
 from django.db import models
 
@@ -60,4 +61,27 @@ class Product(models.Model):
 		thumbnail = File(thumb_io, name=image.name)
 
 		return thumbnail
+
+
+class Order(models.Model):
+	ORDERED = "o"
+	SHIPPED = "s"
+	STATUS_CHOICES = (
+		(ORDERED, "Ordered"),
+		(SHIPPED, "Shipped"),
+	)
+	user = models.ForeignKey(User, related_name="orders", on_delete=models.CASCADE, blank=True, null=True)
+	first_name = models.CharField(max_length=50)
+	last_name = models.CharField(max_length=50)
+	email = models.EmailField(max_length=255)
+	address = models.TextField()
+	zip_code = models.PositiveIntegerField(max_length=9)
+	place = models.CharField(max_length=255)
+	phone = models.CharField(max_length=20)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+	paid = models.BooleanField(default=False)
+	paid_amount = models.PositiveIntegerField(blank=True, null=True)
+	status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=ORDERED)
+
 
