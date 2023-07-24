@@ -85,3 +85,10 @@ class Order(models.Model):
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=ORDERED)
 
 
+class OrderItem(models.Model):
+	order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
+	product = models.ForeignKey(Product, related_name="items", on_delete=models.CASCADE)
+	price = models.IntegerField()
+	quantity = models.IntegerField(default=1)
+
+
