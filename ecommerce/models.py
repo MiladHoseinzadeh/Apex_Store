@@ -75,7 +75,7 @@ class Order(models.Model):
 	last_name = models.CharField(max_length=50)
 	email = models.EmailField(max_length=255)
 	address = models.TextField()
-	zip_code = models.PositiveIntegerField(max_length=9)
+	zip_code = models.CharField(max_length=10)
 	place = models.CharField(max_length=255)
 	phone = models.CharField(max_length=20)
 	created_at = models.DateTimeField(auto_now_add=True)
