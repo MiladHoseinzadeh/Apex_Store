@@ -62,19 +62,25 @@ def update_cart(request, product_id, action):
         cart.add(product_id, -1, True)
 
     product = Product.objects.get(pk=product_id)
-    quantity = cart.get_item(product_id)["quantity"]
+    quantity = cart.get_item(product_id)
 
-    item = {
-        "product": {
-            "id": product.id,
-            "name": product.name,
-            "image": product.image,
-            "get_thumbnail": product.get_thumbnail(),
-            "price": product.price,
-        },
-        "quantity": quantity,
-        "total_price": quantity * product.price,
-    }
+    if quantity:
+        quantity = quantity["quantity"]
+
+        item = {
+            "product": {
+                "id": product.id,
+                "name": product.name,
+                "image": product.image,
+                "get_thumbnail": product.get_thumbnail(),
+                "price": product.price,
+            },
+            "quantity": quantity,
+            "total_price": quantity * product.price,
+        }
+    
+    else:
+        item = None
 
     context = {
         "item": item,

@@ -9,6 +9,10 @@
 		
 		{% for item in cart %}	
 			{% include 'ecommerce/partials/cart_item.html' %}
+		{% empty %}
+			<div class="my-6 pr-6">
+				<h1 class="text-center text-2xl text-purple-950">You haven't added any products to your cart yet!!!</h1>
+			</div>
 		{% endfor %}
 			
 	</div>
