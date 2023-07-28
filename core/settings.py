@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    "stripe",
+
     "accounts.apps.AccountsConfig",
     "ecommerce.apps.EcommerceConfig",
 ]
@@ -138,3 +140,7 @@ CART_SESSION_ID = 'cart'
 # Login and Logout
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Stripe
+STRIPE_API_KEY_PUBLISHABLE = "pk_test_51NYrD0H91PbWmwuorYyw5fmp1UdFO9Ors9HG7gl8bbvOlYrWKysXiDERSzK8DKf570iNccb1LOAPDL8H7yLMQXHF00HyEIDrn9"
+STRIPE_API_KEY_HIDDEN = "sk_test_51NYrD0H91PbWmwuo5BZXC6m8rdQ6Pvibg9BJRFp5KowIEMvmb3LE1MK6KhJVnr4rKhzQk3eORSGUrwLXptzbVt0W00gjxnGneA"

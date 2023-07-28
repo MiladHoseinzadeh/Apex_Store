@@ -10,6 +10,7 @@ packages = [{include = "apex_ecommerce"}]
 python = "^3.8"
 Django = "^4.2"
 pillow = "^9.5.0"
+stripe = "^5.5.0"
 
 
 [build-system]
