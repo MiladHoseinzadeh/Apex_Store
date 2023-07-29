@@ -84,6 +84,9 @@ class Order(models.Model):
 	paid_amount = models.PositiveIntegerField(blank=True, null=True)
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=ORDERED)
 
+	class Meta:
+		ordering = ("-created_at",)
+
 
 class OrderItem(models.Model):
 	order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
