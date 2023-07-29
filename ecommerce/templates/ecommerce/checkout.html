@@ -49,8 +49,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="mb-6 p-6 bg-gray-100 rounded-xl">
-				<h2 class="mb-5 uppercase text-lg">Payment Information</h2>
+			<div class="mb-6 p-6 bg-gray-100 rounded-xl text-red-600" id="errors">
 			</div>
 		</div>
 	</div>
@@ -69,6 +68,8 @@
 {% block extra_scripts %}
 	<script type="application/javascript" src="https://js.stripe.com/v3/"></script>
 	<script>
+		let el = document.getElementById("errors")
+
 		function validateForm(data) {
 			let errors = []
 
@@ -92,6 +93,18 @@
 			}
 			if (data.phone === '') {
 				errors.push('Phone Number is required!')
+			}
+
+			if (errors.length > 0) {
+				let html = "<ul>"
+
+				errors.forEach((error) => {
+					html += "<li>" + error + "</li>"
+				})
+
+				el.innerHTML = html + "</ul>"
+			} else {
+				el.innerHTML = ""
 			}
 
 			return errors
