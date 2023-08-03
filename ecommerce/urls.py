@@ -10,6 +10,7 @@ from ecommerce.views import (
     update_cart,
     hx_cart_total_price,
     place_order,
+    success_purchase,
 )
 
 app_name = "ecommerce"
@@ -18,6 +19,7 @@ urlpatterns = [
     path("", indexـpage, name="indexـpage"),
     path("shop/", shop, name="shop"),
     path("shop/cart/", show_cart, name="show_cart"),
+    path("shop/cart/success/", success_purchase, name="success_purchase"),
     path("shop/cart/checkout/", checkout, name="checkout"),
     path("shop/<slug:slug>/", product_detail, name="product_detail"),
     path("shop/add_to_cart/<int:product_id>/", add_to_cart, name="add_to_cart"),

@@ -113,7 +113,7 @@ def hx_menu_cart(request):
 def hx_cart_total_price(request):
     return render(request, "ecommerce/partials/cart_total_price.html")
 
-
+@login_required
 def place_order(request):
     cart = Cart(request)
     data = json.loads(request.body)
@@ -182,3 +182,7 @@ def place_order(request):
         )
 
     return JsonResponse({"session": session, "order": payment_intent})
+
+@login_required
+def success_purchase(request):
+    return render(request, "ecommerce/success_purchase.html")
