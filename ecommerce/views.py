@@ -83,7 +83,7 @@ def update_cart(request, product_id, action):
             "quantity": quantity,
             "total_price": quantity * product.price,
         }
-    
+
     else:
         item = None
 
@@ -113,6 +113,7 @@ def hx_menu_cart(request):
 def hx_cart_total_price(request):
     return render(request, "ecommerce/partials/cart_total_price.html")
 
+
 @login_required
 def place_order(request):
     cart = Cart(request)
@@ -129,23 +130,23 @@ def place_order(request):
     obj = {
         "price_data": {
             "currency": "usd",
-            "product_data": {
-                "name": product.name
-            },
+            "product_data": {"name": product.name},
             "unit_amount": product.price,
         },
-        "quantity": item["quantity"]
+        "quantity": item["quantity"],
     }
 
     items.append(obj)
 
     stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
     session = stripe.checkout.Session.create(
-        payment_method_types=['card',],
+        payment_method_types=[
+            "card",
+        ],
         line_items=items,
         mode="payment",
         success_url="http://127.0.0.1:8000/shop/cart/success/",
-        cancel_url="http://127.0.0.1:8000/shop/cart/"
+        cancel_url="http://127.0.0.1:8000/shop/cart/",
     )
     payment_intent = session.payment_intent
 
@@ -181,7 +182,10 @@ def place_order(request):
             order=order, product=product, quantity=quantity, price=price
         )
 
+    cart.clear()
+
     return JsonResponse({"session": session, "order": payment_intent})
+
 
 @login_required
 def success_purchase(request):
