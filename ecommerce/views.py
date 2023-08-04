@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from ecommerce.models import Product, Category, Order, OrderItem
 from ecommerce.cart import Cart
 
@@ -127,7 +127,7 @@ def place_order(request):
         quantity = int(item["quantity"])
         total_price += product.price * quantity
 
-    obj = {
+    item_obj = {
         "price_data": {
             "currency": "usd",
             "product_data": {"name": product.name},
@@ -136,7 +136,7 @@ def place_order(request):
         "quantity": item["quantity"],
     }
 
-    items.append(obj)
+    items.append(item_obj)
 
     stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
     session = stripe.checkout.Session.create(
@@ -150,28 +150,19 @@ def place_order(request):
     )
     payment_intent = session.payment_intent
 
-    first_name = data["first_name"]
-    last_name = data["last_name"]
-    email = data["email"]
-    address = data["address"]
-    zip_code = data["zip_code"]
-    place = data["place"]
-    phone = data["phone"]
-
     order = Order.objects.create(
         user=request.user,
-        first_name=first_name,
-        last_name=last_name,
-        email=email,
-        address=address,
-        zip_code=zip_code,
-        place=place,
-        phone=phone,
+        first_name=data["first_name"],
+        last_name=data["last_name"],
+        email=data["email"],
+        address=data["address"],
+        zip_code=data["zip_code"],
+        place=data["place"],
+        phone=data["phone"],
+        payment_intent=payment_intent,
+        paid_amount=total_price,
+        paid=True,
     )
-    order.payment_intent = payment_intent
-    order.paid_amount = total_price
-    order.paid = True
-    order.save()
 
     for item in cart:
         product = item["product"]
