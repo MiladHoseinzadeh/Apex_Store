@@ -92,6 +92,9 @@ class Order(models.Model):
 			return self.paid_amount
 		
 		return 0
+	
+	def __str__(self):
+		return f"Ordered by {self.first_name} {self.last_name}"
 
 
 class OrderItem(models.Model):
@@ -99,5 +102,7 @@ class OrderItem(models.Model):
 	product = models.ForeignKey(Product, related_name="items", on_delete=models.CASCADE)
 	price = models.IntegerField()
 	quantity = models.IntegerField(default=1)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
 
 
