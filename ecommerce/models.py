@@ -62,6 +62,17 @@ class Product(models.Model):
 
 		return thumbnail
 
+	def get_total_rating(self):
+		total_retings = 0
+
+		for review in self.reviews.all():
+			total_retings += review.rating
+
+		if total_retings > 0:
+			return total_retings / self.reviews.count()
+		
+		return 0
+
 
 class Order(models.Model):
 	ORDERED = "o"
