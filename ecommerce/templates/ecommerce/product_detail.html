@@ -5,7 +5,7 @@
 	<div class="images w-full mb-6 lg:mb-2 lg:w-3/5">
 		<img 
 			src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/500x270.jpg{% endif %}" 
-			class="rounded-xl ml-8" 
+			class="rounded-xl ml-2" 
 		/>
 	</div>
 	<div class="information w-full lg:p-6 lg:w-2/5">
@@ -25,6 +25,48 @@
 		>
 			Add to cart
 		</a>
+	</div>
+	<div class="w-full mt-6">
+		<h2 class="text-xl ml-2">Reviews</h2>
+		
+		{% for review in product.reviews.all %}
+			<div class="px-4 py-6 bg-gray-100 rounded-xl my-3">
+				<strong>Rating: </strong>{{ review.rating }} / 6 <br>
+				<strong>Comment: </strong><br>
+				{{ review.content }}<br>
+				<strong>Created by: </strong>
+				{% if review.created_by == request.user %}
+					Me <strong>at</strong> {{ review.created_at }}
+				{% else %}
+					{{ review.created_by }} <strong>at</strong> {{ review.created_at }}
+				{% endif %}
+			</div>
+		{% endfor %}
+			
+		{% if request.user.is_authenticated %}
+			<form action="." method="POST" class="mt-4 p-6 bg-gray-100 rounded-xl">
+				{% csrf_token %}
+				<div>
+					<label>Rating</label><br>
+					<select name="rating">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3" selected>3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+					</select>
+				</div>
+				<div>
+					<label>Comment</label><br>
+					<textarea name="content"></textarea>
+				</div>
+				<div>
+					<button>Submit</button>
+				</div>
+			</form>
+		{% endif %}
+			
 	</div>
 </div>
 {% endblock main_content %}

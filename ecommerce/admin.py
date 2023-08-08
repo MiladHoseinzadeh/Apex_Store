@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ecommerce.models import Category, Product, Order, OrderItem
+from ecommerce.models import Category, Product, Order, OrderItem, Review
 
 
 @admin.register(Product)
@@ -48,3 +48,9 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ["status", "created_at"]
     search_fields = ["first_name", "last_name", "address"]
     inlines = [OrderItemInline]
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ["created_by", "product", "rating", "created_at"]
+    list_filter = ["rating", "created_at"]
